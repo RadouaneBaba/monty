@@ -32,6 +32,11 @@ void handleop(char *line, unsigned int l, instruction_t *cmd, stack_t **stack)
 		cmd->f = pall;
 		cmd->f(stack, l);
 	}
+	else
+	{
+		printf("L%d: unknown instruction %s\n", l, cmd->opcode);
+		exit(EXIT_FAILURE);
+	}
 }
 /**
  * main - Entry point
@@ -52,19 +57,18 @@ int main(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		perror("USAGE: monty file\n");
+		printf("USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
 	fp = fopen(argv[1], "r");
 	if (fp == NULL)
 	{
-		perror("Error: Can't open file ");
-		perror(argv[1]);
+		printf("Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
 	if (cmd == NULL)
 	{
-		perror("Error: malloc failed\n");
+		printf("Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
 	while ((n = getline(&line, &len, fp)) != -1)
@@ -75,7 +79,7 @@ int main(int argc, char **argv)
 	free(cmd);
 	free(line);
 	fclose(fp);
-	exit(EXIT_SUCCESS);
+	return (0);
 
 
 }
