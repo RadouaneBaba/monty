@@ -11,18 +11,24 @@ char *s;
 void push(stack_t **stack, unsigned int l)
 {
 	stack_t *t = malloc(sizeof(stack_t));
-	int n = atoi(s);
+	int n;
+	int i = 0;
 
 	if (t == NULL)
 	{
 		perror("Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
-	if (n == 0 && s[0] != '0')
+	while (s[i])
 	{
-		printf("L%d: usage: push integer\n", l);
-		exit(EXIT_FAILURE);
+		if (s[i] < 48 || s[i] > 57)
+		{
+			printf("L%d: usage: push integer\n", l);
+			exit(EXIT_FAILURE);
+		}
+		i++;
 	}
+	n = atoi(s);
 	t->n = n;
 	t->next = *stack;
 	t->prev = NULL;

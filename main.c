@@ -73,6 +73,11 @@ int main(int argc, char **argv)
 	}
 	while ((n = getline(&line, &len, fp)) != -1)
 	{
+		if (line[0] == '\n')
+		{
+			l++;
+			continue;
+		}
 		handleop(line, l, cmd, &stack);
 		l++;
 	}
