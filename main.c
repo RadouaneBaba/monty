@@ -15,8 +15,8 @@ void handleop(char *line, unsigned int l, instruction_t *cmd, stack_t **stack)
 
 	while (line[i])
 	{
-		if (line[i] == '\n')
-			line[i] = '\0';
+		if (line[i] == '\n' || line[i] == '$')
+			line[i] = ' ';
 		i++;
 	}
 	cmd->opcode = strtok(line, " ");
