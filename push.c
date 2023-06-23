@@ -1,5 +1,7 @@
 #include "monty.h"
 
+char *s;
+
 /**
  * push - push element at top of stack
  * @stack: adress of stack
@@ -26,7 +28,7 @@ void push(stack_t **stack, unsigned int l)
 	t->prev = NULL;
 	if (*stack == NULL)
 	{
-		*stack = l;
+		*stack = t;
 		return;
 	}
 	(*stack)->prev = t;

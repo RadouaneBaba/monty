@@ -1,4 +1,7 @@
 #include "monty.h"
+
+char *s;
+
 /**
  * handleop - set the stack and handle instruction
  * @line: line in the file
@@ -21,11 +24,13 @@ void handleop(char *line, unsigned int l, instruction_t *cmd, stack_t **stack)
 	if (strcmp(cmd->opcode, "push") == 0)
 	{
 		s = strtok(NULL, " ");
-		cmd->f = push(stack, l);
+		cmd->f = push;
+		cmd->f(stack, l);
 	}
 	else if (strcmp(cmd->opcode, "pall") == 0)
 	{
-		cmd->f = pall(&stack, l);
+		cmd->f = pall;
+		cmd->f(stack, l);
 	}
 }
 /**
@@ -64,7 +69,7 @@ int main(int argc, char **argv)
 	}
 	while ((n = getline(&line, &len, fp)) != -1)
 	{
-		handleopcode(line, l, cmd, &stack);
+		handleop(line, l, cmd, &stack);
 		l++;
 	}
 	free(cmd);
