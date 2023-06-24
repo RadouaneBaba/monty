@@ -33,6 +33,9 @@ void handleop(char *line, unsigned int l, instruction_t *cmd, stack_t **stack)
 	else
 	{
 		fprintf(stderr, "L%d: unknown instruction %s\n", l, cmd->opcode);
+		free(line);
+		free_dlistint(*stack);
+		free(cmd);
 		exit(EXIT_FAILURE);
 	}
 }
@@ -51,7 +54,7 @@ int main(int argc, char **argv)
 	ssize_t n;
 	char *line = NULL;
 	stack_t *stack = NULL;
-	instruction_t *cmd = malloc(sizeof(instruction_t));
+	instruction_t *cmd;
 
 	if (argc != 2)
 	{
@@ -59,11 +62,12 @@ int main(int argc, char **argv)
 		exit(EXIT_FAILURE);
 	}
 	fp = fopen(argv[1], "r");
-	if (fp == NULL)
+	if (fp == NULL || argv[1][strlen(argv[1]) - 1] != 'm')
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
+	cmd = malloc(sizeof(instruction_t));
 	if (cmd == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
