@@ -17,6 +17,7 @@ void push(stack_t **stack, unsigned int l)
 		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
+	s = strtok(NULL, " ");
 	if (!s)
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", l);

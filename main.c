@@ -2,9 +2,10 @@
 
 instruction_t ins[] = {
 	{"push", push},
-	{"pall", pall}
+	{"pall", pall},
+	{"pint", pint}
 };
-const int SIZE = 2;
+const int SIZE = 3;
 /**
  * handleop - set the stack and handle instruction
  * @line: line in the file
@@ -31,7 +32,6 @@ void handleop(char *line, unsigned int l, stack_t **stack)
 		if (strcmp(ins[j].opcode, s) == 0)
 		{
 			k = 1;
-			s = strtok(NULL, " ");
 			ins[j].f(stack, l);
 		}
 		j++;
@@ -66,7 +66,7 @@ int main(int argc, char **argv)
 		exit(EXIT_FAILURE);
 	}
 	fp = fopen(argv[1], "r");
-	if (fp == NULL || argv[1][strlen(argv[1]) - 1] != 'm')
+	if (fp == NULL)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
