@@ -18,7 +18,8 @@ void handleop(char *line, unsigned int l, instruction_t *cmd, stack_t **stack)
 		i++;
 	}
 	cmd->opcode = strtok(line, " ");
-
+	if (cmd->opcode == NULL)
+		return;
 	if (strcmp(cmd->opcode, "push") == 0)
 	{
 		s = strtok(NULL, " ");
@@ -75,11 +76,6 @@ int main(int argc, char **argv)
 	}
 	while ((n = getline(&line, &len, fp)) != -1)
 	{
-		if (line[0] == '\n')
-		{
-			l++;
-			continue;
-		}
 		handleop(line, l, cmd, &stack);
 		l++;
 	}
