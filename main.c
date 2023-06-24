@@ -1,15 +1,21 @@
 #include "monty.h"
 
+instruction_t ins[] = {
+	{"push", push},
+	{"pall", pall}
+};
+const int SIZE = 2;
 /**
  * handleop - set the stack and handle instruction
  * @line: line in the file
  * @l: number of line
- * @cmd: instruction pointer
  * @stack: pointer to stack
  */
-void handleop(char *line, unsigned int l, instruction_t *cmd, stack_t **stack)
+void handleop(char *line, unsigned int l, stack_t **stack)
 {
 	int i = 0;
+	int j = 0;
+	int k = 0;
 
 	while (line[i])
 	{
@@ -17,31 +23,24 @@ void handleop(char *line, unsigned int l, instruction_t *cmd, stack_t **stack)
 			line[i] = '\0';
 		i++;
 	}
-	cmd->opcode = strtok(line, " ");
-	if (cmd->opcode == NULL)
+	s = strtok(line, " ");
+	if (s == NULL)
 		return;
-	if (strcmp(cmd->opcode, "push") == 0)
+	while (j < SIZE)
 	{
-		s = strtok(NULL, " ");
-		if (!s)
-        	{
-                	fprintf(stderr, "L%d: usage: push integer\n", l);
-                	exit(EXIT_FAILURE);
-        	}
-		cmd->f = push;
-		cmd->f(stack, l);
+		if (strcmp(ins[j].opcode, s) == 0)
+		{
+			k = 1;
+			s = strtok(NULL, " ");
+			ins[j].f(stack, l);
+		}
+		j++;
 	}
-	else if (strcmp(cmd->opcode, "pall") == 0)
+	if (k == 0)
 	{
-		cmd->f = pall;
-		cmd->f(stack, l);
-	}
-	else
-	{
-		fprintf(stderr, "L%d: unknown instruction %s\n", l, cmd->opcode);
+		fprintf(stderr, "L%d: unknown instruction %s\n", l, s);
 		free(line);
 		free_dlistint(*stack);
-		free(cmd);
 		exit(EXIT_FAILURE);
 	}
 }
@@ -60,7 +59,6 @@ int main(int argc, char **argv)
 	ssize_t n;
 	char *line = NULL;
 	stack_t *stack = NULL;
-	instruction_t *cmd;
 
 	if (argc != 2)
 	{
@@ -73,18 +71,11 @@ int main(int argc, char **argv)
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
-	cmd = malloc(sizeof(instruction_t));
-	if (cmd == NULL)
-	{
-		fprintf(stderr, "Error: malloc failed\n");
-		exit(EXIT_FAILURE);
-	}
 	while ((n = getline(&line, &len, fp)) != -1)
 	{
-		handleop(line, l, cmd, &stack);
+		handleop(line, l, &stack);
 		l++;
 	}
-	free(cmd);
 	free(line);
 	free_dlistint(stack);
 	fclose(fp);
