@@ -1,15 +1,5 @@
 #include "monty.h"
 
-instruction_t ins[] = {
-	{"push", push},
-	{"pall", pall},
-	{"pint", pint},
-	{"pop", pop},
-	{"swap", swap},
-	{"add", add},
-	{"nop", nop}
-};
-const int SIZE = 7;
 /**
  * handleop - set the stack and handle instruction
  * @line: line in the file

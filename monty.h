@@ -37,7 +37,7 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-char* s;
+char *s;
 void push(stack_t **stack, unsigned int l);
 void pall(stack_t **stack, unsigned int l);
 void pint(stack_t **stack, unsigned int l);
@@ -46,4 +46,16 @@ void swap(stack_t **stack, unsigned int l);
 void add(stack_t **stack, unsigned int l);
 void nop(stack_t **stack, unsigned int l);
 void free_dlistint(stack_t *head);
+
+instruction_t ins[] = {
+	{"push", push},
+	{"pall", pall},
+	{"pint", pint},
+	{"pop", pop},
+	{"swap", swap},
+	{"add", add},
+	{"nop", nop}
+};
+const int SIZE = 7;
+
 #endif
