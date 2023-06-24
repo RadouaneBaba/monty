@@ -41,5 +41,6 @@ char* s;
 void push(stack_t **stack, unsigned int l);
 void pall(stack_t **stack, unsigned int l);
 void pint(stack_t **stack, unsigned int l);
+void pop(stack_t **stack, unsigned int l);
 void free_dlistint(stack_t *head);
 #endif

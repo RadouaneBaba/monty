@@ -3,9 +3,10 @@
 instruction_t ins[] = {
 	{"push", push},
 	{"pall", pall},
-	{"pint", pint}
+	{"pint", pint},
+	{"pop", pop}
 };
-const int SIZE = 3;
+const int SIZE = 4;
 /**
  * handleop - set the stack and handle instruction
  * @line: line in the file
