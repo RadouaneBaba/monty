@@ -23,6 +23,11 @@ void handleop(char *line, unsigned int l, instruction_t *cmd, stack_t **stack)
 	if (strcmp(cmd->opcode, "push") == 0)
 	{
 		s = strtok(NULL, " ");
+		if (!s)
+        	{
+                	fprintf(stderr, "L%d: usage: push integer\n", l);
+                	exit(EXIT_FAILURE);
+        	}
 		cmd->f = push;
 		cmd->f(stack, l);
 	}

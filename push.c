@@ -21,7 +21,7 @@ void push(stack_t **stack, unsigned int l)
 	{
 		if ((s[i] < 48 || s[i] > 57) && (s[i] != '+' && s[i] != '-'))
 		{
-			printf("L%d: usage: push integer\n", l);
+			fprintf(stderr, "L%d: usage: push integer\n", l);
 			exit(EXIT_FAILURE);
 		}
 		i++;
