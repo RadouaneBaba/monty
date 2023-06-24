@@ -47,15 +47,4 @@ void add(stack_t **stack, unsigned int l);
 void nop(stack_t **stack, unsigned int l);
 void free_dlistint(stack_t *head);
 
-instruction_t ins[] = {
-	{"push", push},
-	{"pall", pall},
-	{"pint", pint},
-	{"pop", pop},
-	{"swap", swap},
-	{"add", add},
-	{"nop", nop}
-};
-const int SIZE = 7;
-
 #endif

@@ -1,5 +1,5 @@
 #include "monty.h"
-
+#include "global.h"
 /**
  * handleop - set the stack and handle instruction
  * @line: line in the file
