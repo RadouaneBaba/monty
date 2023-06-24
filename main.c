@@ -1,7 +1,5 @@
 #include "monty.h"
 
-char *s;
-
 /**
  * handleop - set the stack and handle instruction
  * @line: line in the file
@@ -86,6 +84,4 @@ int main(int argc, char **argv)
 	free_dlistint(stack);
 	fclose(fp);
 	return (0);
-
-
 }

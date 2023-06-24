@@ -1,7 +1,5 @@
 #include "monty.h"
 
-char *s;
-
 /**
  * push - push element at top of stack
  * @stack: adress of stack
