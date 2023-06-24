@@ -16,12 +16,12 @@ void push(stack_t **stack, unsigned int l)
 
 	if (t == NULL)
 	{
-		perror("Error: malloc failed\n");
+		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
 	while (s[i])
 	{
-		if (s[i] < 48 || s[i] > 57)
+		if ((s[i] < 48 || s[i] > 57) && (s[i] != '+' && s[i] != '-'))
 		{
 			printf("L%d: usage: push integer\n", l);
 			exit(EXIT_FAILURE);

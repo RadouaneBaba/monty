@@ -15,8 +15,8 @@ void handleop(char *line, unsigned int l, instruction_t *cmd, stack_t **stack)
 
 	while (line[i])
 	{
-		if (line[i] == '\n' || line[i] == '$')
-			line[i] = ' ';
+		if (line[i] == '\n')
+			line[i] = '\0';
 		i++;
 	}
 	cmd->opcode = strtok(line, " ");
@@ -34,7 +34,7 @@ void handleop(char *line, unsigned int l, instruction_t *cmd, stack_t **stack)
 	}
 	else
 	{
-		printf("L%d: unknown instruction %s\n", l, cmd->opcode);
+		fprintf(stderr, "L%d: unknown instruction %s\n", l, cmd->opcode);
 		exit(EXIT_FAILURE);
 	}
 }
@@ -57,18 +57,18 @@ int main(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		printf("USAGE: monty file\n");
+		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
 	fp = fopen(argv[1], "r");
 	if (fp == NULL)
 	{
-		printf("Error: Can't open file %s\n", argv[1]);
+		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
 	if (cmd == NULL)
 	{
-		printf("Error: malloc failed\n");
+		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
 	while ((n = getline(&line, &len, fp)) != -1)
@@ -83,6 +83,7 @@ int main(int argc, char **argv)
 	}
 	free(cmd);
 	free(line);
+	free_dlistint(stack);
 	fclose(fp);
 	return (0);
 
