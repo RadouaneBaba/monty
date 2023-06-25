@@ -67,6 +67,11 @@ int main(int argc, char **argv)
 	}
 	while ((n = getline(&line, &len, fp)) != -1)
 	{
+		if (line[0] == '#')
+		{
+			l++;
+			continue;
+		}
 		handleop(line, l, &stack);
 		l++;
 	}
