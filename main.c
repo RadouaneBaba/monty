@@ -19,7 +19,7 @@ void handleop(char *line, unsigned int l, stack_t **stack)
 		i++;
 	}
 	s = strtok(line, " ");
-	if (s == NULL)
+	if (s == NULL || s[0] == '#')
 		return;
 	while (j < SIZE)
 	{
@@ -67,11 +67,6 @@ int main(int argc, char **argv)
 	}
 	while ((n = getline(&line, &len, fp)) != -1)
 	{
-		if (line[0] == '#')
-		{
-			l++;
-			continue;
-		}
 		handleop(line, l, &stack);
 		l++;
 	}
