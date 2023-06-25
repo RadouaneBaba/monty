@@ -45,6 +45,10 @@ void pop(stack_t **stack, unsigned int l);
 void swap(stack_t **stack, unsigned int l);
 void add(stack_t **stack, unsigned int l);
 void nop(stack_t **stack, unsigned int l);
+void sub(stack_t **stack, unsigned int l);
+void divide(stack_t **stack, unsigned int l);
+void mul(stack_t **stack, unsigned int l);
+void mod(stack_t **stack, unsigned int l);
 void free_dlistint(stack_t *head);
 
 #endif

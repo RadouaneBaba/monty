@@ -8,8 +8,12 @@ instruction_t ins[] = {
 	{"pop", pop},
 	{"swap", swap},
 	{"add", add},
-	{"nop", nop}
+	{"nop", nop},
+	{"sub", sub},
+	{"div", divide},
+	{"mul", mul},
+	{"mod", mod}
 };
-const int SIZE = 7;
+const int SIZE = 11;
 
 #endif
